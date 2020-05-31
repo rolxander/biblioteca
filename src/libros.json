@@ -1,0 +1,27 @@
+{"libros": [
+    {
+      "code":"lib01",
+      "title": "Nombre Libro 1",
+      "author": "Autor 1",
+      "editorial": "Editorial 1",
+      "current_state": "baja | disponible",
+      "release_date": "timesamp",
+      "baja":{
+          "state":"",
+          "description":null
+      },
+      "prestamos":[
+        {
+          "cliente": {
+            "nombre": "Cliente 1",
+            "celular": "75784496"
+          },
+          "fecha_prestamo":"timestamp",
+          "fecha_devolucion":"timestamp",
+          "fecha_devuelto": "timestamp"
+        }
+      ]
+    }
+
+  ]
+}

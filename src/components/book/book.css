@@ -1,0 +1,80 @@
+.row-book{
+   /* border-top: #707070 1px solid;*/
+    font-size: 10px;
+    border-bottom: #707070 1px solid;
+    margin: 1em 0;
+    color: #000;
+    padding: 1em 0 0.5em 1em;
+    display: grid;
+    grid-template-areas:"book-data options";
+    grid-template-columns: 1fr 0.5fr;
+    font-size: 1.2em;
+    color: #707070;
+    font-weight: 400;
+}
+.book-data{
+    grid-area: book-data;
+}
+.title{
+    font-size: 2.8em;
+    color: #000;
+    font-weight: 300;
+    margin-bottom: 0.3em;
+}
+.options{
+    grid-area:"options";
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,.1)
+
+}
+.row-book .label{
+    color: black;
+    display: inline-block;
+    width: 5em;
+    font-weight: 500;
+    margin: 1.5px;
+
+}
+
+.row-book .label::after{
+    content: ":";
+    display: inline-block;
+    margin: 0 0.1em 0 0;
+}
+.btn{
+    padding: 1em;
+    border-radius: 1em;
+    margin:1em;
+    font-size: 1.2em;
+    font-weight: 500;
+    
+}
+.btn:focus{
+    outline: none;
+}
+.btn-red{
+    background-color: rgba(240,0,0,1);
+    color: #FFF;
+}
+.btn-red:hover{
+    background-color: rgba(200,0,0,1);
+}
+.btn-blue{
+
+}
+.btn-green{
+    background-color: rgba(50, 220,50, 1);
+    color: #FFF;
+}
+.btn-green:hover{
+    background-color:rgba(0,200,0,1) ;
+}
+.btn-disable{
+    background-color: #707070;
+    color: #FFF;
+
+}
+

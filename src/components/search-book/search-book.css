@@ -1,0 +1,41 @@
+.search-book-icon{
+    margin: 1em;
+    
+}
+.btn-search{
+    outline-width: 2px;
+    outline-color: #707070;
+    outline-style: solid;
+}
+.input-search-book{
+    width: 60%;
+}
+.search-book{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1em;
+    
+}
+
+.input-search-book>input{
+    width: 100%;
+    height: 3em;
+    outline-width: 2px;
+    outline-color: #707070;
+    outline-style: solid;
+
+}
+.input-search-book>input:focus{
+    outline-color: transparent;
+    outline-style: solid;
+    outline-width: 2px;
+    width: 100%;
+}
+@media screen and (max-width: 500)
+{
+ :root{
+     font-size: 10px;
+ }
+ 
+}

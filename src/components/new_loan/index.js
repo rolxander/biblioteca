@@ -9,26 +9,38 @@ export default class AddLoan extends Component{
         let date = new Date();
         super(props)
         this.state={
-            id_libro:"",
-            cliente:{
-                nombre:"",
-                celular:""
+            data:{
+                id_libro:"",
+                cliente:{
+                    nombre:"",
+                    celular:""
             },
-            prestamo:{
-                fecha_prestamo: `${date.getDate()}/${(date.getMonth())+1}/${date.getFullYear()}`,
-                
+                prestamo:{
+                    fecha_prestamo: `${date.getDate()}/${(date.getMonth())+1}/${date.getFullYear()}`,
+                    
+                }
             }
-
         }
         console.log(this.state)
     }
+    getDataInput=(valor)=>{
+        this.setState({
+            data:{
+                cliente:{
+                    nombre:valor
+                }
+            }
+        })
+        console.log(this.state)
+    }
+    registerLoan=()=>{}
     render(){
         return(
         <>
             <form className="form">
-                <InputAnimado label="Nombre" type="text"/>
-                <InputAnimado label="Celular" type="text"/>
-                <InputAnimado label="Dias" type="number" min="0" max="100" step="0"/>
+                <InputAnimado label="Nombre" type="text" getDateInput={this.getDataInput.bind(this)}/>
+                <InputAnimado label="Celular" type="text" getDateInput={this.getDataInput.bind(this)}/>
+                <InputAnimado label="Dias" type="number" min="0" max="100" step="0" getDateInput={this.getDataInput.bind(this)}/>
                 <div className="flex-center">
                 <button className="btn btn-green w-80 mt-3">
                         REGISTRAR

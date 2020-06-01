@@ -7,6 +7,7 @@ import {} from '@fortawesome/free-brands-svg-icons';
 import {faEye} from '@fortawesome/free-regular-svg-icons';
 import Modal from '../components/modal';
 import NewLoan from '../components/new_loan';
+import ToggleCheckBox from '../components/toggle-custom-checkboox'
 
  class Routes extends Component{
     constructor(props){
@@ -14,17 +15,23 @@ import NewLoan from '../components/new_loan';
         library.add(faWindowClose,faSearch,faEye,faEdit,faUser,faLock,faPlusCircle,faTrashAlt);
       //  console.log(faUser)
     }
+    
     render(){
         return(
         <Switch>
-            <Route exact path='/libros' render = {
+            <Route exact path='/' render = {
                 ()=>{
                     return (<ListBooks/>)
                 }}/>
-            <Route exact path='/' render={
+            <Route exact path='/toggle' render={
+                ()=>{
+                    return(<ToggleCheckBox/> )
+            }}/>    
+            <Route path='/modal' render={
                 ()=>{
                     return(<Modal><NewLoan/></Modal> )
                 }}/>
+     
         </Switch>)
     }
 }

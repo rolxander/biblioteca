@@ -16,11 +16,13 @@ export default class InputAnimado extends Component{
     }
  
     inputChange =(e) =>{
+        let {type}=this.props;
         let valor = e.target.value;
         this.setState({
             input_value:valor
         })
-        console.log("asdf")
+        const {getDateInput} = this.props;
+        getDateInput(valor);
         if(valor!==""){
             this.setState({
                 label:{
@@ -68,14 +70,20 @@ export default class InputAnimado extends Component{
         }
         })
     }
+    validarTexto=()=>{
+
+    }
     inputTypeDefined=()=>{
         let  {label,type,min,max,step} = this.props;
         if(type==="text"){
             console.log()
-            return (<><input onFocus={this.inputFocus} onChange={this.inputChange.bind(this)} onBlur={this.inputBlur} type={type}/>
-            <label className="label" style={this.state.label.style}>{label}</label>
-            <span className="barra" style={this.state.barra.style}>
-            </span></>)
+            return (
+            <>
+                <input onFocus={this.inputFocus} onChange={this.inputChange.bind(this)} onBlur={this.inputBlur} type={type}/>
+                <label className="label" style={this.state.label.style}>{label}</label>
+                <span className="barra" style={this.state.barra.style}>
+                </span>
+            </>)
         }
         else if(type==="number"){
             console.log()

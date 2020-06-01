@@ -5,7 +5,7 @@ import Book from '../book'
 import './list-books.css'
 import SearchBook from '../search-book';
 import NewBook from '../new_book';
-import AddLoad from '../new_loan'
+import NewLoad from '../new_loan'
 class ListBooks extends Component{
     constructor(props){
         super(props);
@@ -44,48 +44,14 @@ class ListBooks extends Component{
 
         }
         //this.prueba  = this.prueba.bind(this)
-        this.showModalNewBook = this.showModalNewBook.bind(this)
+        
     }
-    showModalNewBook(state){
-        if(state){
-            return (<NewBook 
-                    addBookFromState={this.addBookFromState.bind(this)}
-                    hideModalNewBook={this.hideModalNewBook.bind(this)}/>)
-        } else{return null}
-    }
-    setStateModalNewBookTrue(){
-        this.setState({new_book:true})
-    }
-    hideModalNewBook=()=>{
-        this.setState({
-            new_book:false
-        })
-    }
-    addBookFromState=(libro)=>{
-        this.setState({
-            books:[...this.state.books,libro]
-        })
-    }
-    setStateModaNewLoanTrue=()=>{
-        this.setState({
-            add_loan:true
-        })
-    }
-    showModalNewLoan(state){
-        if(state){
-            return(<AddLoad/>)
-        }else{
-            return null
-        }
-    }
+   
     render(){
         return(
-        <>  
-            
-            {this.showModalNewBook(this.state.new_book)}
-            {this.showModalNewLoan(this.state.add_loan)}
+            <>
             <SearchBook/>
-                <button onClick={this.setStateModalNewBookTrue.bind(this)}>
+                <button>
                     <FontAwesomeIcon icon={['fas','plus-circle']} color='green'/>
                 
                 </button>

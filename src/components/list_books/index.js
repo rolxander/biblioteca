@@ -6,12 +6,12 @@ import './list-books.css'
 import SearchBook from '../search-book';
 import NewBook from '../new_book';
 import NewLoad from '../new_loan'
+import Modal from '../modal'
 class ListBooks extends Component{
     constructor(props){
         super(props);
         this.state ={
-            new_book:false,
-            add_loan: true  ,
+            modal:false,
             books:[
                 {
                     id:"lb01",
@@ -43,22 +43,41 @@ class ListBooks extends Component{
             ]
 
         }
-        //this.prueba  = this.prueba.bind(this)
+    }
+    closeModal=(e)=>{
+        e.preventDefault();
+        this.setState({modal:false})
+    }
+    dispatchModal=()=>{
         
     }
-   
+    modalToggle=(e)=>{
+        e.preventDefault()
+        this.setState({modal:!this.state.modal})
+    }
+    showModal=()=>{
+        if(this.state.modal)
+        return(
+        <>
+            <Modal closeModal={this.closeModal.bind(this)}>
+                <NewBook closeModal={this.closeModal.bind(this)}/>
+            </Modal>
+        </>)
+    }
     render(){
         return(
-            <>
+            <>{
+                this.showModal()
+            }
             <SearchBook/>
-                <button>
+                <button onClick={this.modalToggle.bind(this)}>
                     <FontAwesomeIcon icon={['fas','plus-circle']} color='green'/>
                 
                 </button>
                 <div className="list-books">
                     <div className="table-body"> 
                         {this.state.books.map((book,key)=>{
-                        return <Book  key={key} book={book}/>
+                        return <Book  key={key} book={book} modalToggle={this.modalToggle.bind(this)}/>
                         })}
                     </div>    
             </div>

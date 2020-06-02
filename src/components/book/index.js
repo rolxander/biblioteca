@@ -1,5 +1,7 @@
 import React,{Component}from 'react';
 import {prestarLibro} from './events'
+import Modal from '../modal'
+import NewLoan from '../new_loan'
 import './book.css';
 //<FontAwesomeIcon icon={['fas','edit']} color='blue'/>
  
@@ -7,8 +9,12 @@ export default class Book extends Component{
     constructor(props){
         super(props)
         this.state={
-            book:{}
+            book:{},
+            modal:false
         }
+    }
+    showModal=()=>{
+        
     }
     static getDrivedStateFromProps(props,state){
 
@@ -19,6 +25,7 @@ export default class Book extends Component{
         const {title,author,release_date,editorial} = this.props.book;
     return(
         <>
+            
             <div className="row-book">
                <div className="book-data"> 
                     <div className="title">
@@ -46,12 +53,12 @@ export default class Book extends Component{
                 </div> 
                 <div className="options">
                     <div>
-                        <button onClick={prestarLibro.bind(this,{title,author,editorial,release_date})} className="btn btn-green">
+                        <button  className="btn btn-green">
                             Prestar
                         </button>
                     </div>
                     <div>
-                        <button  className="btn btn-red">
+                        <button  className="btn btn-blue">
                             Detalles
                         </button>
                         

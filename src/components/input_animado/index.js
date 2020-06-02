@@ -4,7 +4,6 @@ export default class InputAnimado extends Component{
     constructor(props){
         super(props)
         this.state={
-            input_value:"",
             label:{
                 style:{}
             },
@@ -14,15 +13,12 @@ export default class InputAnimado extends Component{
         }
         this.style = {color:'#F00'}
     }
- 
     inputChange =(e) =>{
-        let {type}=this.props;
+        let {type,name}=this.props;
         let valor = e.target.value;
-        this.setState({
-            input_value:valor
-        })
-        const {getDateInput} = this.props;
-        getDateInput(valor);
+        let data = `{"${name}":"${valor}"}`
+        const {getDataInput} = this.props;
+        getDataInput(data);
         if(valor!==""){
             this.setState({
                 label:{
@@ -74,23 +70,31 @@ export default class InputAnimado extends Component{
 
     }
     inputTypeDefined=()=>{
-        let  {label,type,min,max,step} = this.props;
+        let  {label,type,min,max,step,name} = this.props;
         if(type==="text"){
-            console.log()
             return (
             <>
-                <input onFocus={this.inputFocus} onChange={this.inputChange.bind(this)} onBlur={this.inputBlur} type={type}/>
+                <input onFocus={this.inputFocus} onChange={this.inputChange.bind(this)} onBlur={this.inputBlur} type={type} />
                 <label className="label" style={this.state.label.style}>{label}</label>
                 <span className="barra" style={this.state.barra.style}>
                 </span>
             </>)
         }
         else if(type==="number"){
-            console.log()
-            return(<><><input step= {step}type={type}  min={min} max={max} onFocus={this.inputFocus} onChange={this.inputChange.bind(this)} onBlur={this.inputBlur}/>
-            <label className="label" style={this.state.label.style}>{label}</label>
-            <span className="barra" style={this.state.barra.style}>
-            </span></></>)
+            return(
+            <>
+                <input 
+                    step={step}type={type}
+                    min={min} 
+                    max={max} 
+                    onFocus={this.inputFocus} 
+                    onChange={this.inputChange.bind(this)} 
+                    onBlur={this.inputBlur}
+                />
+                <label className="label" style={this.state.label.style}>{label}</label>
+                <span className="barra" style={this.state.barra.style}>
+                </span>
+            </>)
         }
     }
     render()

@@ -361,7 +361,7 @@ template {
 }
 :root{
   font-size: 11px;
-  --background-modal :  rgba(0,0,0,.7);
+  --background-modal :  rgba(0,0,0,.4);
   --color-white:#FFF;
 }
 @media screen and (max-width: 500)

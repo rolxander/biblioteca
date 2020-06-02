@@ -6,46 +6,50 @@ import InputAnimado from '../input_animado'
 
 export default class AddLoan extends Component{
     constructor(props){
-        let date = new Date();
         super(props)
         this.state={
-            data:{
-                id_libro:"",
-                cliente:{
-                    nombre:"",
-                    celular:""
-            },
-                prestamo:{
-                    fecha_prestamo: `${date.getDate()}/${(date.getMonth())+1}/${date.getFullYear()}`,
-                    
-                }
-            }
+            codigo:"",
+            fecha_prestamo:"",
+            fecha_limite_devolucion:"00/00/00",
+            cantidad_dias:0
         }
-        console.log(this.state)
     }
     getDataInput=(valor)=>{
+        valor = JSON.parse(valor)
         this.setState({
-            data:{
-                cliente:{
-                    nombre:valor
-                }
-            }
+          ...valor
         })
-        console.log(this.state)
     }
-    registerLoan=()=>{}
+
+    registerLoan=(e)=>{
+        let date = new Date();
+        e.preventDefault();
+        let dateMilisegundos = date.getTime()
+        let fecha_limite_devolucion = (dateMilisegundos+(86400000*this.state.cantidad_dias))
+        let dateLimite = new Date(fecha_limite_devolucion)
+        let loan ={
+            codigo:this.state.codigo,
+            nombre:this.state.nombre,
+            celular:this.state.celular,
+            fecha_prestamo:`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`,
+            fecha_limite_devolucion:`${dateLimite.getDate()}/${dateLimite.getMonth()}/${dateLimite.getFullYear()}`
+            
+        }
+        console.log(loan)
+    }
     render(){
+        const {closeModal}=this.props;
         return(
         <>
             <form className="form">
-                <InputAnimado label="Nombre" type="text" getDateInput={this.getDataInput.bind(this)}/>
-                <InputAnimado label="Celular" type="text" getDateInput={this.getDataInput.bind(this)}/>
-                <InputAnimado label="Dias" type="number" min="0" max="100" step="0" getDateInput={this.getDataInput.bind(this)}/>
+                <InputAnimado label="Nombre" type="text" getDataInput={this.getDataInput.bind(this)} name="nombre"/>
+                <InputAnimado label="Celular" type="text" getDataInput={this.getDataInput.bind(this)} name="celular"/>
+                <InputAnimado label="Dias" type="number" min="0" max="100" step="0" getDataInput={this.getDataInput.bind(this)} name="cantidad_dias"/>
                 <div className="flex-center">
-                <button className="btn btn-green w-80 mt-3">
+                <button onClick={this.registerLoan.bind(this)} className="btn btn-green w-80 mt-3">
                         REGISTRAR
                     </button>
-                    <button className="btn btn-red w-80 mt-3">
+                    <button onClick={closeModal} className="btn btn-red w-80 mt-3">
                         CANCELAR
                     </button>
                 </div>

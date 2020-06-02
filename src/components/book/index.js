@@ -1,5 +1,4 @@
 import React,{Component}from 'react';
-import {prestarLibro} from './events'
 import Modal from '../modal'
 import NewLoan from '../new_loan'
 import './book.css';
@@ -13,8 +12,21 @@ export default class Book extends Component{
             modal:false
         }
     }
-    showModal=()=>{
-        
+    closeModal=()=>{
+        this.setState({modal:false})
+    }
+    modalToggle=(e)=>{
+        e.preventDefault();
+        this.setState({modal:!this.state.modal})
+    }
+    showModal=(state)=>{
+        if(state){
+            const {codigo}=this.props.book;
+            return (<Modal title="Registrar Prestamo" closeModal={this.closeModal.bind(this)}>
+                <NewLoan modalToggle={this.modalToggle.bind(this) } codigo={codigo}   closeModal={this.closeModal.bind(this)}/>
+            </Modal>)
+        }
+        else return null
     }
     static getDrivedStateFromProps(props,state){
 
@@ -25,7 +37,7 @@ export default class Book extends Component{
         const {title,author,release_date,editorial} = this.props.book;
     return(
         <>
-            
+            {this.showModal(this.state.modal)}
             <div className="row-book">
                <div className="book-data"> 
                     <div className="title">
@@ -53,7 +65,7 @@ export default class Book extends Component{
                 </div> 
                 <div className="options">
                     <div>
-                        <button  className="btn btn-green">
+                        <button onClick={this.modalToggle}  className="btn btn-green">
                             Prestar
                         </button>
                     </div>

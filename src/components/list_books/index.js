@@ -5,7 +5,6 @@ import Book from '../book'
 import './list-books.css'
 import SearchBook from '../search-book';
 import NewBook from '../new_book';
-import NewLoad from '../new_loan'
 import Modal from '../modal'
 class ListBooks extends Component{
     constructor(props){
@@ -14,7 +13,7 @@ class ListBooks extends Component{
             modal:false,
             books:[
                 {
-                    id:"lb01",
+                    codigo:"lb01",
                     title:'Metologia de la programacion I',
                     author:'José Gael Choque Serrano',
                     editorial:'Devsitebolivia Editorial',
@@ -23,7 +22,7 @@ class ListBooks extends Component{
                     active:'prestado',
                 },
                 {   
-                    id:"lb03",
+                    codigo:"lb03",
                     title:'Inteligencia Artificial',
                     author:'Sergio Mendoza',
                     editorial:'devsitebolivia',
@@ -32,7 +31,7 @@ class ListBooks extends Component{
                     active:'prestado',               
                 },
                 {
-                    id:"lb02",
+                    codigo:"lb02",
                     title:'Metodologia de la programacion',
                     author:'DevsiteBolivia',
                     editorial:'devsitebolivia',
@@ -51,18 +50,20 @@ class ListBooks extends Component{
     dispatchModal=()=>{
         
     }
+
     modalToggle=(e)=>{
         e.preventDefault()
         this.setState({modal:!this.state.modal})
     }
     showModal=()=>{
-        if(this.state.modal)
+        if(this.state.modal){
         return(
         <>
-            <Modal closeModal={this.closeModal.bind(this)}>
+            <Modal title="Registrar Libro" closeModal={this.closeModal.bind(this)}>
                 <NewBook closeModal={this.closeModal.bind(this)}/>
             </Modal>
         </>)
+        }else return null
     }
     render(){
         return(
@@ -77,7 +78,7 @@ class ListBooks extends Component{
                 <div className="list-books">
                     <div className="table-body"> 
                         {this.state.books.map((book,key)=>{
-                        return <Book  key={key} book={book} modalToggle={this.modalToggle.bind(this)}/>
+                        return <Book  key={key} book={book}/>
                         })}
                     </div>    
             </div>

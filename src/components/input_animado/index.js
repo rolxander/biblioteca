@@ -70,7 +70,7 @@ export default class InputAnimado extends Component{
 
     }
     inputTypeDefined=()=>{
-        let  {label,type,min,max,step,name} = this.props;
+        let  {label,type,min,max,step} = this.props;
         if(type==="text"){
             return (
             <>

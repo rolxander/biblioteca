@@ -3,7 +3,7 @@ import{FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import './modal.css';
 export default class Modal extends Component{
     render(){
-        const {children,closeModal} = this.props;
+        const {children,closeModal,title} = this.props;
     return(
     <>
         <div className="modal flex-center">
@@ -13,7 +13,7 @@ export default class Modal extends Component{
                         <FontAwesomeIcon icon={['fa','window-close']} />
                     </div>
                     <div className="title-modal">
-                        Registrar Prestamo
+                        {title}
                     </div>
                 </div>
                 <div className="body-modal">

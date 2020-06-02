@@ -4,11 +4,11 @@ import InputAnimado from '../input_animado'
 
 
 
-export default class AddLoan extends Component{
+export default class NewLoan extends Component{
     constructor(props){
         super(props)
         this.state={
-            codigo:"",
+            codigo:props.codigo,
             fecha_prestamo:"",
             fecha_limite_devolucion:"00/00/00",
             cantidad_dias:0
@@ -22,6 +22,7 @@ export default class AddLoan extends Component{
     }
 
     registerLoan=(e)=>{
+        const { closeModal} =this.props;
         let date = new Date();
         e.preventDefault();
         let dateMilisegundos = date.getTime()
@@ -36,9 +37,10 @@ export default class AddLoan extends Component{
             
         }
         console.log(loan)
+        closeModal()
     }
     render(){
-        const {closeModal}=this.props;
+        const {modalToggle}=this.props;
         return(
         <>
             <form className="form">
@@ -49,7 +51,7 @@ export default class AddLoan extends Component{
                 <button onClick={this.registerLoan.bind(this)} className="btn btn-green w-80 mt-3">
                         REGISTRAR
                     </button>
-                    <button onClick={closeModal} className="btn btn-red w-80 mt-3">
+                    <button onClick={modalToggle} className="btn btn-red w-80 mt-3">
                         CANCELAR
                     </button>
                 </div>

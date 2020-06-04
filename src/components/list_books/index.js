@@ -6,11 +6,19 @@ import './list-books.css'
 import SearchBook from '../search-book';
 import NewBook from '../new_book';
 import Modal from '../modal'
+const axios = require('axios')
 class ListBooks extends Component{
     constructor(props){
         super(props);
+        axios({
+            method: 'get',
+            url: 'http://localhost:3500/api/libros',
+            
+          })
+            .then(function (response) {
+                console.log(response)
+            });
         this.state ={
-            modal:false,
             books:[
                 {
                     codigo:"lb01",
@@ -43,8 +51,7 @@ class ListBooks extends Component{
 
         }
     }
-    closeModal=(e)=>{
-        e.preventDefault();
+    closeModal=()=>{
         this.setState({modal:false})
     }
     dispatchModal=()=>{

@@ -25,11 +25,5 @@ input~.barra{
     display: block;
     height: 1px;
     border-bottom: 1px solid #707070;
-    transition: ease 0.2s all;
-}
-.w-80{
-    width:80%
-}
-.mt-3{
-    margin-top: 3em;
+    transition: ease 0.3s all;
 }

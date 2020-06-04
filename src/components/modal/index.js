@@ -13,7 +13,7 @@ export default class Modal extends Component{
                         <FontAwesomeIcon icon={['fa','window-close']} />
                     </div>
                     <div className="title-modal">
-                        {title}
+                        {title  }
                     </div>
                 </div>
                 <div className="body-modal">

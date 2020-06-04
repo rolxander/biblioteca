@@ -2,7 +2,11 @@ import React,{Component}from 'react';
 import './new_loan.css'
 import InputAnimado from '../input_animado'
 
-
+/*
+    opcional
+    <button onClick={modalToggle} className="btn btn-red w-80 mt-3">
+                        CANCELAR
+    </button> */
 
 export default class NewLoan extends Component{
     constructor(props){
@@ -40,20 +44,17 @@ export default class NewLoan extends Component{
         closeModal()
     }
     render(){
-        const {modalToggle}=this.props;
         return(
         <>
             <form className="form">
                 <InputAnimado label="Nombre" type="text" getDataInput={this.getDataInput.bind(this)} name="nombre"/>
                 <InputAnimado label="Celular" type="text" getDataInput={this.getDataInput.bind(this)} name="celular"/>
                 <InputAnimado label="Dias" type="number" min="0" max="100" step="0" getDataInput={this.getDataInput.bind(this)} name="cantidad_dias"/>
-                <div className="flex-center">
-                <button onClick={this.registerLoan.bind(this)} className="btn btn-green w-80 mt-3">
+                <div className="flex-center mt-2">
+                    <button onClick={this.registerLoan.bind(this)} className="btn btn-green w-100 mt-3">
                         REGISTRAR
                     </button>
-                    <button onClick={modalToggle} className="btn btn-red w-80 mt-3">
-                        CANCELAR
-                    </button>
+                   
                 </div>
             </form>
         </>)

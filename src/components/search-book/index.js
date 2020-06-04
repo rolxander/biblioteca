@@ -2,9 +2,7 @@ import React,{Component} from 'react'
 import {FontAwesomeIcon}from '@fortawesome/react-fontawesome'
 import './search-book.css'
 export default class SearchBook extends Component{
-    constructor(props){
-        super(props)
-    }
+  
     render(){
 
         return(

@@ -14,7 +14,7 @@ export default class InputAnimado extends Component{
         this.style = {color:'#F00'}
     }
     inputChange =(e) =>{
-        let {type,name}=this.props;
+        let {name}=this.props;
         let valor = e.target.value;
         let data = `{"${name}":"${valor}"}`
         const {getDataInput} = this.props;

@@ -9,11 +9,19 @@ export default class Book extends Component{
         super(props)
         this.state={
             book:{},
-            modal:false
+            modal:false,
+            detailModal:false
         }
     }
     closeModal=()=>{
         this.setState({modal:false})
+    }
+    closeDetailModal=()=>{
+        this.setState({detailModal:false})
+    }
+    detailModalToggle=(e)=>{
+        e.preventDefault();
+        this.setState({detailModal:!this.state.detailModal})
     }
     modalToggle=(e)=>{
         e.preventDefault();
@@ -22,9 +30,27 @@ export default class Book extends Component{
     showModal=(state)=>{
         if(state){
             const {codigo}=this.props.book;
-            return (<Modal title="Registrar Prestamo" closeModal={this.closeModal.bind(this)}>
-                <NewLoan modalToggle={this.modalToggle.bind(this) } codigo={codigo}   closeModal={this.closeModal.bind(this)}/>
-            </Modal>)
+            return (
+                <Modal 
+                title="Registrar Prestamo" 
+                closeModal={this.closeModal.bind(this)}>
+                    <NewLoan 
+                    modalToggle={this.modalToggle.bind(this)} 
+                    codigo={codigo}   
+                    closeModal={this.closeModal.bind(this)}/>
+                </Modal>)
+        }
+        else return null
+    }
+    showDetailModal=(state)=>{
+        if(state){
+            console.log(this.props.book)
+            const {title}=this.props.book;
+            return (
+                <Modal 
+                title={title} 
+                closeModal={this.closeDetailModal.bind(this)}>
+                </Modal>)
         }
         else return null
     }
@@ -37,6 +63,7 @@ export default class Book extends Component{
         const {title,author,release_date,editorial} = this.props.book;
     return(
         <>
+            {this.showDetailModal(this.state.detailModal)}
             {this.showModal(this.state.modal)}
             <div className="row-book">
                <div className="book-data"> 
@@ -70,7 +97,7 @@ export default class Book extends Component{
                         </button>
                     </div>
                     <div>
-                        <button  className="btn btn-blue">
+                        <button onClick={this.detailModalToggle} className="btn btn-blue">
                             Detalles
                         </button>
                         
